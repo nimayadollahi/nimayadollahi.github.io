@@ -1,14 +1,14 @@
 body {
-  background-color: #0b1120;
+  background-color: #000000;
   padding: 50px;
   margin: 0;
   font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-  color: #4a4a4a;
+  color: #3b3b3b;
   font-weight: 400;
 }
 
-/* Dynamic Interactive Background Canvas */
-#bg-canvas {
+/* Fullscreen WebGL Fluid Canvas */
+#fluid-canvas {
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #222;
+  color: #111;
   margin: 0 0 18px;
 }
 
@@ -37,33 +37,35 @@ h1 {
 }
 
 h2 {
-  color: #2c3e50;
+  color: #1a2e22;
   font-weight: 600;
 }
 
 h3, h4, h5, h6 {
-  color: #34495e;
+  color: #264232;
   font-weight: 500;
 }
 
 a {
-  color: #0284c7;
+  color: #059669; /* Emerald green link color to match the fluid theme */
   text-decoration: none;
+  font-weight: 500;
 }
 
 a:hover {
-  color: #0369a1;
+  color: #047857;
+  text-decoration: underline;
 }
 
 a small {
   font-size: 11px;
-  color: #777;
+  color: #666;
   margin-top: -0.3em;
   display: block;
 }
 
 a:hover small {
-  color: #777;
+  color: #666;
 }
 
 .wrapper {
@@ -74,7 +76,7 @@ a:hover small {
 }
 
 blockquote {
-  border-left: 1px solid #e5e5e5;
+  border-left: 2px solid #10b981;
   margin: 0;
   padding: 0 0 0 20px;
   font-style: italic;
@@ -104,13 +106,9 @@ th, td {
   border-bottom: 1px solid #e5e5e5;
 }
 
-dt {
+dt, th {
   color: #444;
   font-weight: 500;
-}
-
-th {
-  color: #444;
 }
 
 img {
@@ -118,7 +116,7 @@ img {
 }
 
 strong {
-  color: #222;
+  color: #111;
   font-weight: 600;
 }
 
@@ -140,12 +138,12 @@ header.profile-box,
 section,
 footer {
   box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.93);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(16, 185, 129, 0.35);
   border-radius: 12px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(16, 185, 129, 0.12);
 }
 
 /* =========================================
@@ -172,18 +170,16 @@ header.profile-box {
   line-height: 1.2;
 }
 
-/* Circular frame that clips the zoomed photo */
 .avatar-wrapper {
   width: 72px;
   height: 72px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #e0e0e0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid #10b981;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
   flex-shrink: 0;
 }
 
-/* Zoomed-in photo centered on face */
 .profile-pic {
   width: 100%;
   height: 100%;
@@ -200,20 +196,21 @@ header p.view a.github-link {
   align-items: center;
   gap: 12px;
   padding: 9px 12px;
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
+  background: #f8fafc;
+  border: 1px solid #d1fae5;
   border-radius: 8px;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
 header p.view a.github-link:hover {
-  background: #f0f4f8;
-  border-color: #cbd5e1;
+  background: #ecfdf5;
+  border-color: #10b981;
 }
 
 header p.view a.github-link i {
   font-size: 24px;
-  color: #24292f;
+  color: #111827;
 }
 
 /* Bottom Contact Bar (Email, LinkedIn, CV) */
@@ -245,7 +242,7 @@ header ul.contact-links li:last-child {
 header ul.contact-links a {
   line-height: 1.1;
   font-size: 11px;
-  color: #777;
+  color: #666;
   display: block;
   text-align: center;
   padding-top: 7px;
@@ -253,23 +250,20 @@ header ul.contact-links a {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  text-decoration: none;
   transition: background-color 0.2s ease;
 }
 
 header ul.contact-links a strong {
   font-size: 13px;
   display: block;
-  color: #222;
+  color: #111;
   margin-top: 1px;
 }
 
 header ul.contact-links a:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #555;
-}
-
-header ul.contact-links a:active {
-  background-color: #eaeaea;
+  background-color: rgba(16, 185, 129, 0.08);
+  color: #333;
 }
 
 /* Watermark logos behind Email, LinkedIn, and CV */
@@ -278,7 +272,7 @@ header ul.contact-links .bg-icon {
   right: 4px;
   bottom: -4px;
   font-size: 32px;
-  opacity: 0.14;
+  opacity: 0.15;
   z-index: -1;
   pointer-events: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -293,11 +287,11 @@ header ul.contact-links .link-linkedin .bg-icon {
 }
 
 header ul.contact-links .link-cv .bg-icon {
-  color: #555555;
+  color: #059669;
 }
 
 header ul.contact-links a:hover .bg-icon {
-  opacity: 0.26;
+  opacity: 0.28;
   transform: scale(1.1) rotate(-5deg);
 }
 
@@ -316,7 +310,7 @@ section > *:last-child {
 }
 
 section h2 {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #e2e8f0;
   padding-bottom: 6px;
   margin-top: 28px;
 }
@@ -377,7 +371,7 @@ footer p:last-child {
     color: #444;
     background: #fff;
   }
-  #bg-canvas {
+  #fluid-canvas {
     display: none;
   }
 }
