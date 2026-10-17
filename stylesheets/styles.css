@@ -391,7 +391,7 @@ header ul.contact-links a:hover .bg-icon {
   height: 68px;
   border-radius: 50%; /* Change to 10px if you prefer a rounded square */
   object-fit: cover;
-  object-position: center 30%; /* Focuses on your face in ax3_11zon.jpg */
+  object-position: center 60%; /* Focuses on your face in ax3_11zon.jpg */
   border: 2px solid #e0e0e0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
