@@ -2,23 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nima Yadollahi</title>
   <link rel="stylesheet" href="stylesheets/styles.css">
   <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-  <!-- Load Font Awesome for GitHub, LinkedIn, Gmail/Email, and CV icons -->
+  <!-- Font Awesome for GitHub, LinkedIn, Email, and CV icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+  <!-- Dynamic Interactive Network Background -->
+  <canvas id="bg-canvas"></canvas>
+
   <div class="wrapper">
 
     <header class="profile-box">
       <div class="profile-title">
         <div class="avatar-wrapper">
-          <img src="images/profile.jpg" alt="Nima Yadollahi" class="profile-pic">
+          <!-- Automatically works whether the file has a leading space or not -->
+          <img src="images/%20profile.jpg" onerror="this.onerror=null;this.src='images/profile.jpg';" alt="Nima Yadollahi" class="profile-pic">
         </div>
         <h1>Nima Yadollahi</h1>
       </div>
+
       <p>Quantum Information &amp; Machine Learning<br>Optics &amp; Photonics</p>
 
       <p class="view">
@@ -141,10 +146,124 @@
 
     <footer>
       <p>Maintained by <a href="https://github.com/nimayadollahi">Nima Yadollahi</a></p>
-      <p><small>Hosted on GitHub Pages </small></p>
+      <p><small>Hosted on GitHub Pages</small></p>
     </footer>
 
   </div>
+
   <script src="javascripts/scale.fix.js"></script>
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    const config = {
+      particleCount: 90,
+      maxDistance: 150,
+      mouseRadius: 160,
+      speed: 0.6,
+      nodeColor: 'rgba(56, 189, 248, 0.8)', // Glowing cyan nodes
+      lineColor: '56, 189, 248',            // Cyan connecting lines
+      bgColor: '#0b1120'                    // Deep quantum navy background
+    };
+
+    const mouse = { x: null, y: null };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('mouseout', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * config.speed * 2;
+        this.vy = (Math.random() - 0.5) * config.speed * 2;
+        this.radius = Math.random() * 2 + 1.2;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = config.nodeColor;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = window.innerWidth < 768 ? 45 : config.particleCount;
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = config.bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < config.maxDistance) {
+            const opacity = (1 - dist / config.maxDistance) * 0.45;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${config.lineColor}, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = particles[i].x - mouse.x;
+          const dy = particles[i].y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < config.mouseRadius) {
+            const opacity = (1 - dist / config.mouseRadius) * 0.75;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${config.lineColor}, ${opacity})`;
+            ctx.lineWidth = 1.2;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+  </script>
 </body>
 </html>
