@@ -190,6 +190,13 @@ header.profile-box {
   display: block;
 }
 
+header p.affiliation-text {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
 header p.view a.github-link {
   display: flex;
   align-items: center;
