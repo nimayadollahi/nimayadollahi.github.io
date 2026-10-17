@@ -23,7 +23,7 @@
         <h1>Nima Yadollahi</h1>
       </div>
 
-      <p>Quantum Information &amp; Machine Learning<br>Optics &amp; Photonics</p>
+      <p class="affiliation-text">Quantum Information &amp; Machine Learning<br>Optics &amp; Photonics</p>
 
       <p class="view">
         <a href="https://github.com/nimayadollahi" class="github-link">
@@ -71,12 +71,6 @@
         machine learning and quantum information. My research interests span quantum machine learning,
         physics-informed neural networks, and integrated photonics.
       </p>
-
-      <h2>Affiliations</h2>
-      <ul>
-        <li>Department of Physics, Amirkabir University of Technology</li>
-        <li>M.Sc. Program in Optics &amp; Photonics</li>
-      </ul>
 
       <h2>Research</h2>
       <p>
@@ -176,7 +170,6 @@
       }
     `;
 
-    // Fragment Shader tuned for faint, slow, elegant motion
     const fsSource = `
       precision highp float;
       uniform vec2 u_resolution;
@@ -224,11 +217,10 @@
           float dist = length(diff);
           float strength = float(12 - i) / 12.0;
           float splat = exp(-dist * dist * 22.0) * strength;
-          mouseGlow += splat * 0.25; // Fainter mouse interaction
+          mouseGlow += splat * 0.25;
           warp += normalize(diff + 0.0001) * splat * 0.05;
         }
 
-        // Extremely slow time coefficient for faint, smooth movement
         vec2 fluidCoord = p * 1.2 - warp;
         float t = u_time * 0.055; 
 
@@ -244,12 +236,10 @@
 
         float f = snoise(fluidCoord + 1.2 * r);
 
-        // Subdued, faint green color palette against absolute black
         vec3 black = vec3(0.0, 0.0, 0.0);
         vec3 faintEmerald = vec3(0.0, 0.08, 0.03);
         vec3 softGreen = vec3(0.02, 0.35, 0.14);
 
-        // Drastically toned down intensity to make waves very faint
         float fluidIntensity = clamp((f * 0.45 + 0.15), 0.0, 1.0);
         vec3 color = mix(black, faintEmerald, smoothstep(0.0, 0.4, fluidIntensity));
         color = mix(color, softGreen, smoothstep(0.3, 0.8, fluidIntensity + mouseGlow * 0.4));
@@ -303,7 +293,6 @@
     });
 
     function render(time) {
-      // Extremely smooth, lagging interpolation for gentle trail movement
       trail[0].x += (targetMouse.x - trail[0].x) * 0.08;
       trail[0].y += (targetMouse.y - trail[0].y) * 0.08;
       for (let i = trailLength - 1; i > 0; i--) {
