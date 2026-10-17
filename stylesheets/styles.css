@@ -227,10 +227,15 @@ header ul.contact-links {
 }
 
 header ul.contact-links li {
-  width: 33.33%;
+  width: 25%;
   height: 44px;
   border-right: 1px solid #e0e0e0;
   position: relative;
+}
+
+/* Color styling for the Google Scholar watermark icon */
+header ul.contact-links .link-scholar .bg-icon {
+  color: #4285f4; /* Google Blue */
 }
 
 header ul.contact-links li:last-child {
