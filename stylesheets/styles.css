@@ -368,3 +368,31 @@ header ul.contact-links a:hover .bg-icon {
     max-width: 300px;
   }
 }
+
+
+/* Align image and name side-by-side */
+.profile-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+/* Remove bottom margin from h1 so it centers vertically with the photo */
+.profile-title h1 {
+  margin: 0;
+  font-size: 22px; /* Slightly scaled so your name fits cleanly next to the photo */
+  line-height: 1.2;
+}
+
+/* Circular avatar styling with smart cropping around your face */
+.profile-pic {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%; /* Change to 10px if you prefer a rounded square */
+  object-fit: cover;
+  object-position: center 30%; /* Focuses on your face in ax3_11zon.jpg */
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
