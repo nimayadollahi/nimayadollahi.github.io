@@ -47,7 +47,7 @@ h3, h4, h5, h6 {
 }
 
 a {
-  color: #059669; /* Emerald green link color to match the fluid theme */
+  color: #059669;
   text-decoration: none;
   font-weight: 500;
 }
@@ -190,7 +190,6 @@ header.profile-box {
   display: block;
 }
 
-/* GitHub Profile Button Box */
 header p.view a.github-link {
   display: flex;
   align-items: center;
@@ -213,7 +212,6 @@ header p.view a.github-link i {
   color: #111827;
 }
 
-/* Bottom Contact Bar (Email, LinkedIn, CV) */
 header ul.contact-links {
   list-style: none;
   height: 44px;
@@ -266,7 +264,6 @@ header ul.contact-links a:hover {
   color: #333;
 }
 
-/* Watermark logos behind Email, LinkedIn, and CV */
 header ul.contact-links .bg-icon {
   position: absolute;
   right: 4px;
