@@ -272,7 +272,7 @@ footer {
 /* 1. Put the header section into a styled box */
 header.profile-box {
   box-sizing: border-box;
-  width: 280px; /* Slightly wider to accommodate padding */
+  width: 320px; /* Slightly wider to accommodate padding */
   padding: 22px 20px;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
