@@ -406,3 +406,42 @@ header ul.contact-links a:hover .bg-icon {
   transform-origin: 52% 28%; /* Ensures it zooms directly toward your face */
   display: block;
 }
+
+/* Subtle background so the white boxes stand out */
+body {
+  background-color: #f8f9fa;
+}
+
+/* Put the entire right-hand <section> into a matching box */
+section {
+  box-sizing: border-box;
+  width: 540px; /* Uses available space inside the 860px wrapper */
+  padding: 30px 35px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 50px;
+}
+
+/* Remove extra margin on the very last paragraph inside the box */
+section > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Optional: Subtle bottom border under main section headings (h2) */
+section h2 {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 6px;
+  margin-top: 28px;
+}
+
+/* Keep the box clean on mobile and tablet screens */
+@media print, screen and (max-width: 960px) {
+  section {
+    width: auto;
+    padding: 24px 20px;
+    border: 1px solid #e0e0e0; /* Overrides original theme's top/bottom-only border */
+    border-radius: 10px;
+  }
+}
