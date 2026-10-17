@@ -268,3 +268,105 @@ footer {
     color:#444;
   }
 }
+
+
+
+/* 1. Put the header section into a styled box */
+header.profile-box {
+  box-sizing: border-box;
+  width: 280px; /* Slightly wider to accommodate padding */
+  padding: 22px 20px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Adjust the button bar width to fit neatly inside the padded box */
+header.profile-box ul.contact-links {
+  width: 100%;
+  margin-bottom: 0;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+header.profile-box ul.contact-links li {
+  width: 33.33%;
+  float: none;
+  position: relative;
+}
+
+/* 2. Style the GitHub link with a logo box */
+header p.view a.github-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+header p.view a.github-link:hover {
+  background: #f0f4f8;
+  border-color: #d0d7de;
+}
+
+header p.view a.github-link i {
+  font-size: 24px;
+  color: #24292f;
+}
+
+/* 3. Place watermark logos BEHIND the Email, LinkedIn, and CV buttons */
+header ul.contact-links a {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+}
+
+header ul.contact-links .bg-icon {
+  position: absolute;
+  right: 4px;
+  bottom: -4px;
+  font-size: 32px;
+  opacity: 0.12; /* Subtle watermark behind the text */
+  z-index: -1;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Brand colors for the background logos */
+header ul.contact-links .link-email .bg-icon {
+  color: #ea4335; /* Gmail Red */
+}
+
+header ul.contact-links .link-linkedin .bg-icon {
+  color: #0a66c2; /* LinkedIn Blue */
+}
+
+header ul.contact-links .link-cv .bg-icon {
+  color: #555555;
+}
+
+/* Subtle zoom and brighten effect when hovering over the buttons */
+header ul.contact-links a:hover .bg-icon {
+  opacity: 0.22;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Keep responsive layout clean on smaller screens */
+@media print, screen and (max-width: 960px) {
+  header.profile-box {
+    width: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  header.profile-box ul.contact-links {
+    position: static;
+    width: 100%;
+    max-width: 300px;
+  }
+}
