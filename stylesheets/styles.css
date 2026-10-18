@@ -384,3 +384,8 @@ footer p:last-child {
     display: none;
   }
 }
+
+
+.publication-item {
+  list-style: none;
+}
