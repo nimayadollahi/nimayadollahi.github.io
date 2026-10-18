@@ -385,7 +385,11 @@ footer p:last-child {
   }
 }
 
-
 .publication-item {
   list-style: none;
+}
+
+.pub-thumb {
+  width: 400px; /* Increase or decrease this value as needed */
+  height: auto; /* Ensures the image doesn't stretch and maintains its original proportions */
 }
